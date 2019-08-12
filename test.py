@@ -45,11 +45,12 @@ dataset.hist()
 plt.show()
 
 #Scatterplots
-scatter_matrix(datset)
+scatter_matrix(dataset)
 plt.show()
 
 #Evaluate some Algorithms
 #Aufteilung in Trainings- und Testdaten
+scoring = 'accuracy'
 array = dataset.values
 X = array[:,0:4]
 Y = array[:,4]
@@ -86,4 +87,13 @@ for name, model in models:
     msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
     print(msg)
 
+#-> Es werden Werte für die Genauigkeit des jeweiligen Algorithmus errechnet
+#-> Support Vector Machines scheint hier die beste Lösung zu sein
 
+#Compare Algorithms
+fig = plt.figure()
+fig.suptitle('Algorithm Comparison')
+ax = fig.add_subplot(111)
+plt.boxplot(results)
+ax.set_xticklables(names)
+plt.show()
